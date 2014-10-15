@@ -1,4 +1,4 @@
-package sample;
+package sample.model;
 
 import java.util.Date;
 
@@ -8,13 +8,12 @@ import java.util.Date;
 public class Player {
 
     //region Constructors
-    public Player(String name, Club club, int rating, String position, int salary, Date timeToEnd, Date birth, String nationality){
+    public Player(String name, Club club, int rating, String position, int salary, Date birth, String nationality){
         this.name = name;
         this.club=club;
         this.rating=rating;
         this.position=position;
         this.salary=salary;
-        this.timeToEnd=timeToEnd;
         this.birth=birth;
         this.nationality=nationality;
     }
@@ -75,11 +74,15 @@ public class Player {
     public int getSalary(){
         return salary;
     }
-    public void setSalary(int salary) throws Exception{
-        if (salary<1){
-            throw new Exception("Incorrect salary");
-        } else{
-            this.salary=salary;
+    public void setSalary(int salary) {
+        try {
+            if (salary < 1) {
+                throw new Exception("Incorrect salary");
+            } else {
+                this.salary = salary;
+            }
+        } catch(Exception e){
+            e.printStackTrace();
         }
     }
     //endregion
@@ -94,20 +97,6 @@ public class Player {
             throw new Exception("Incorrect price");
         } else{
             this.price=price;
-        }
-    }
-    //endregion
-
-    //region Time to end
-    private Date timeToEnd;
-    public Date getTimeToEnd(){
-        return timeToEnd;
-    }
-    public void setTimeToEnd(Date timeToEnd) throws Exception{
-        if (timeToEnd.compareTo(sample.Main.now)<0){
-            throw new Exception("Incorrect time to end");
-        } else{
-            this.timeToEnd=timeToEnd;
         }
     }
     //endregion

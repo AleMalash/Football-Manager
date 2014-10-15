@@ -1,4 +1,4 @@
-package sample;
+package sample.model;
 
 import java.util.List;
 
@@ -50,6 +50,22 @@ public class Club {
     public int getSalaryBudget(){return salaryBudget;}
     public void setSalaryBudget(int salaryBudget){
         this.salaryBudget=salaryBudget;
+    }
+    //endregion
+
+    //region Controler of Budget
+    public boolean controlerOfBudget(Player player){
+        boolean result=false;
+
+        int summarySalary=0;
+        for (int i=0;i<players.size();i++){
+            summarySalary+=players.get(i).getSalary();
+        }
+
+        if (((summarySalary+player.getSalary())<salaryBudget)&&(player.getPrice()<transferBudget)){
+            result=true;
+        }
+        return result;
     }
     //endregion
 }
